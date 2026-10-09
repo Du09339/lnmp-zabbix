@@ -4,6 +4,8 @@ This is a personal Rocky Linux 9 operations lab. It runs Nginx, PHP-FPM, MySQL, 
 
 ## Verified results (2026-10-09)
 
+完整项目说明：[架构、部署、配置、检查、验证、监控、演练、失败处理、回滚与复盘](docs/Project-Summary.md)。
+
 - Rocky host CPU, memory and filesystem collection through a native active Agent 2.
 - DingTalk problem and recovery notifications; stopping PHP produced an event after approximately 38 seconds. Notification delivery latency was not measured.
 - Self-signed HTTPS, application health checks, compressed MySQL backup and isolated database restore.

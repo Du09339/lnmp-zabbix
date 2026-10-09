@@ -4,6 +4,7 @@
 
 | 功能板块 | 文档 | 当前状态 |
 | --- | --- | --- |
+| 项目全流程总结 | [十一项总结](Project-Summary.md) | 架构、部署、验证、演练与回滚，含证据边界 |
 | Rocky 宿主机监控 | [宿主机监控记录](Rocky-Host-Monitoring.md) | 主动 Agent 接入及指标采集已验证 |
 | Redis 性能对照测试 | [性能测试记录](Redis-Performance-Test-Log.md) | 六轮压测完成，原始结果已保存，临时模式已恢复 |
 | Rocky 部署指南 | [部署指南](Rocky-Deployment.md) | 当前配置与已验证流程，干净环境重部署待验证 |
