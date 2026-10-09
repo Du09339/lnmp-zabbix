@@ -1,0 +1,19 @@
+:root {
+    color-scheme: light;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #172b3a;
+    background: #f3f7f6;
+}
+
+* { box-sizing: border-box; }
+body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 24px; }
+main { width: min(100%, 680px); padding: 36px; background: #fff; border: 1px solid #d8e3df; border-radius: 6px; }
+.eyebrow { color: #087f78; font-size: 12px; font-weight: 700; }
+h1 { margin: 10px 0 20px; font-size: 30px; }
+.message { padding: 16px; background: #edf7f4; border-left: 3px solid #13877b; }
+dl { margin: 24px 0 0; }
+dl div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-top: 1px solid #e4ece9; }
+dt { color: #526874; }
+dd { margin: 0; font-weight: 600; text-align: right; }
+a { color: #087f78; }
+@media (max-width: 520px) { main { padding: 24px; } dl div { align-items: flex-start; } }

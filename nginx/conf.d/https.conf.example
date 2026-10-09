@@ -1,0 +1,29 @@
+# Copy to https.conf only after generating the local development certificate.
+server {
+    listen 443 ssl;
+    server_name localhost;
+    server_tokens off;
+    ssl_certificate /etc/nginx/certs/cert.pem;
+    ssl_certificate_key /etc/nginx/certs/key.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    root /var/www/html/public;
+    index index.php;
+    location = /healthz {
+        include fastcgi_params;
+        fastcgi_pass php:9000;
+        fastcgi_param SCRIPT_FILENAME $document_root/index.php;
+        fastcgi_param REQUEST_URI /healthz;
+    }
+    location ~* \.(?:css|js|jpg|jpeg|gif|png|ico|svg|woff2?)$ {
+        expires 7d;
+        access_log off;
+        try_files $uri =404;
+    }
+    location / { try_files $uri $uri/ /index.php?$query_string; }
+    location ~ \.php$ {
+        try_files $uri =404;
+        include fastcgi_params;
+        fastcgi_pass php:9000;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}

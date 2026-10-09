@@ -1,0 +1,50 @@
+zabbix_export:
+  version: '7.0'
+  template_groups:
+    - uuid: 75a5f7a3f0014a5f9272a27b9db11e01
+      name: Templates/Containers
+  templates:
+    - uuid: 8b7d7a4f572c4d61a03a2fc51b6ed001
+      template: 'Template LNMP Docker health'
+      name: 'Template LNMP Docker health'
+      groups:
+        - name: Templates/Containers
+      items:
+        - uuid: 1a11be77cc52460e87c7086d7a0cf001
+          name: 'Docker daemon information'
+          type: ZABBIX_PASSIVE
+          key: docker.info
+          delay: 1m
+          history: 1d
+          value_type: TEXT
+        - uuid: 2c0d1ad8ca5843cb8a5063b6680ef001
+          name: 'Running Docker containers'
+          type: DEPENDENT
+          key: docker.containers.running
+          delay: '0'
+          history: 7d
+          value_type: UNSIGNED
+          master_item:
+            key: docker.info
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.ContainersRunning
+          triggers:
+            - uuid: 72d480a046bd45b99e48381686f9f001
+              expression: 'last(/Template LNMP Docker health/docker.containers.running)<9'
+              name: 'A container in the lab stack may be stopped (running: {ITEM.LASTVALUE})'
+              priority: HIGH
+        - uuid: 3a11be77cc52460e87c7086d7a0cf002
+          name: 'Docker daemon ping'
+          type: ZABBIX_PASSIVE
+          key: docker.ping
+          delay: 1m
+          history: 7d
+          trends: '0'
+          value_type: UNSIGNED
+          triggers:
+            - uuid: 4fbdcc8759c54feaad8fe07d09a2f002
+              expression: 'last(/Template LNMP Docker health/docker.ping)=0'
+              name: 'Docker daemon is unavailable'
+              priority: HIGH

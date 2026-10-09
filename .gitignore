@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+backups/
+logs/
+nginx/certs/
+nginx/conf.d/https.conf
+docs/index.php.before-cache-off.txt
+*.key
+*.p12
+*.pfx
+.DS_Store
+Thumbs.db
